@@ -1,0 +1,80 @@
+<html>
+<head><title>Basic | css</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Rajdhani" rel="stylesheet">
+  <style>
+  header{
+    text-align: center;
+    background: black;
+}
+header h1{
+          margin: 0;
+          color: rgb(156, 156, 12);
+          text-align: center;
+          font-size: 2.5em;
+}
+nav li{
+    text-align: center;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    display:inline-block;
+    padding:20px;
+}
+footer{
+  text-align: center;
+    background: black;
+      font-size: 2.5em;
+}
+footer p{
+    color: rgb(156, 156, 12);
+}
+  </style>
+</head>
+<body>
+<header>
+<h1>movie</h1>
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</nav>
+</header>
+
+<div class="container">   
+<% if !flash[:notice].blank? %>   
+   <div>   
+      <%= flash[:notice] %>   
+   </div>   
+<% end %>   
+  
+<br>   
+  
+<%= link_to "New Liste", new_liste_path %>   
+<br>   
+<br>   
+
+</div>  
+ <div class="album py-5 bg-light">
+    <div class="container">
+     <div class="row">
+<% @listes.each do |liste| %>
+
+     
+        <div class="col-md-4">
+          <div class="card mb-4 shadow">
+          <img src="<%= liste.attachment %>" class="card-img-top" alt="card image cap">
+            <div class="card-body">
+              <p class="card-text"><b>title:</b><%= liste.title %><br><b>category:</b><%= liste.category %><br><b>year:</b><%= liste.year %><br><b>price:</b><%= liste.price %><br></p>
+             <b> <%= link_to "Download", liste.attachment_url %> </b> 
+            <b><%= link_to "Delete",  liste, method: :delete, confirm: "Are you sure you want to delete #{liste.attachment}?" %></b>
+              </div>
+            </div>
+          </div>
+          <%end%>
+        </div>
+        <footer>
+        <p>&copy by naomeiradukunda</p>
+        </footer>
